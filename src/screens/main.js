@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button } from 'react-native';
 import { useSelector, useStore } from 'react-redux';
-import { fetchAutocomplete, fetchCoordinates } from '../redux/places';
+import { fetchAutocomplete } from '../redux/places';
+import { fetchCoordinates } from '../redux/geocoding';
 import GoogleAPI from '../services/google';
 
 const Main = () => {
   const [keyword, setKeyword] = useState(null);
   const [selectedPlace, setPlace] = useState(null);
   const [store, places] = [useStore(), useSelector(state => state.places)];
+  const geocoding = useSelector(state => state.geocoding);
 
   useEffect(() => {
     selectedPlace !== null && store.dispatch(fetchCoordinates(selectedPlace));
@@ -28,9 +30,7 @@ const Main = () => {
           console.log(response);
         }}
       />
-      <Text>
-        My Places {places.coordinates.lat} {places.coordinates.lng}
-      </Text>
+      <Text>My Places</Text>
       {places.predictions.map(({ description }) => (
         <Text {...{ key: description, onPress: () => setPlace(description) }}>
           {description}
