@@ -11,9 +11,8 @@ class GoogleAPI {
    */
   getAutocomplete(keyword) {
     if (!keyword) return;
-    return fetch(`${API?.url?.autocomplete}&input=${keyword}`).then(response =>
-      response.json(),
-    );
+    const url = `${API?.url?.autocomplete}&input=${keyword}`;
+    return fetch(url).then(response => response.json());
   }
 
   /**
@@ -24,6 +23,17 @@ class GoogleAPI {
   getGeocoding(place) {
     if (!place) return;
     return Geocoder.from(place).then(response => response);
+  }
+
+  /**
+   * this method provide extensive information about the selected place
+   * @param { string }  id        based on the selected place id
+   * @returns Promise<any>
+   */
+  getPlaceDetails(id) {
+    if (!id) return;
+    const url = `${API.url.placeDetails}&place_id=${id}`;
+    return fetch(url).then(response => response.json());
   }
 }
 

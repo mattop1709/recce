@@ -5,6 +5,7 @@ export default {
 
   endpoints: {
     autocomplete: '/place/autocomplete/json',
+    placeDetails: '/place/details/json',
   },
 
   key: Config.GOOGLE_API_KEY,
@@ -13,6 +14,7 @@ export default {
     const { baseURL, endpoints, key } = this;
     return {
       autocomplete: `${baseURL}${endpoints.autocomplete}?key=${key}`,
+      placeDetails: `${baseURL}${endpoints.placeDetails}?key=${key}`,
     };
   },
 };
