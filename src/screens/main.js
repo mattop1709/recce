@@ -3,7 +3,6 @@ import { View, Text, Button } from 'react-native';
 import { useSelector, useStore } from 'react-redux';
 import { fetchAutocomplete } from '../redux/places';
 import { fetchCoordinates } from '../redux/geocoding';
-import GoogleAPI from '../services/google';
 
 const Main = () => {
   const [keyword, setKeyword] = useState(null);
@@ -20,15 +19,6 @@ const Main = () => {
       <Button
         title="Test Redux Autocomplete"
         onPress={() => store.dispatch(fetchAutocomplete('Kajang'))}
-      />
-      <Button
-        title="Get Place Details"
-        onPress={async () => {
-          const response = await GoogleAPI.getPlaceDetails(
-            'ChIJN1t_tDeuEmsRUsoyG83frY4',
-          );
-          console.log(response);
-        }}
       />
       <Text>My Places</Text>
       {places.predictions.map(({ description }) => (

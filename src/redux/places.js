@@ -36,13 +36,9 @@ export const fetchAutocompleteEpic = action$ =>
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_AUTOCOMPLETE:
-      return { ...initialState, isLoadingAutocomplete: true };
+      return { ...initialState, isLoading: true };
     case UPDATE_AUTOCOMPLETE_SUCCESS:
-      return {
-        ...state,
-        isLoadingAutocomplete: false,
-        predictions: action.payload,
-      };
+      return { ...state, isLoading: false, predictions: action.payload };
     case UPDATE_AUTOCOMPLETE_ERROR:
       return { ...initialState, isError: true };
     default:
