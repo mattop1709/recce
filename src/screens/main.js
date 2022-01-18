@@ -3,6 +3,7 @@ import { View, Text, Button } from 'react-native';
 import { useSelector, useStore } from 'react-redux';
 import { fetchAutocomplete } from '../redux/places';
 import { fetchCoordinates } from '../redux/geocoding';
+import Map from '../services/mapbox';
 
 const Main = () => {
   const [keyword, setKeyword] = useState(null);
@@ -14,20 +15,27 @@ const Main = () => {
     selectedPlace !== null && store.dispatch(fetchCoordinates(selectedPlace));
   }, [selectedPlace]);
 
-  return (
-    <View>
-      <Button
-        title="Test Redux Autocomplete"
-        onPress={() => store.dispatch(fetchAutocomplete('Kajang'))}
-      />
-      <Text>My Places</Text>
-      {places.predictions.map(({ description }) => (
-        <Text {...{ key: description, onPress: () => setPlace(description) }}>
-          {description}
-        </Text>
-      ))}
-    </View>
-  );
+  const {
+    coordinates: { lat, lng },
+  } = geocoding;
+
+  return <Map {...{ coordinates: [101.71366, 3.15916] }}></Map>;
 };
 
 export default Main;
+
+// TO BE DELETED
+// return (
+//   <View>
+//     <Button
+//       title="Test Redux Autocomplete"
+//       onPress={() => store.dispatch(fetchAutocomplete('Kajang'))}
+//     />
+//     <Text>My Places</Text>
+//     {places.predictions.map(({ description }) => (
+//       <Text {...{ key: description, onPress: () => setPlace(description) }}>
+//         {description}
+//       </Text>
+//     ))}
+//   </View>
+// );
