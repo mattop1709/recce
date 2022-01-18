@@ -1,7 +1,4 @@
-import Geocoder from 'react-native-geocoding';
 import API from '../constants/api';
-
-Geocoder.init(API.key, { language: 'en' });
 
 class GoogleAPI {
   /**
@@ -22,7 +19,9 @@ class GoogleAPI {
    */
   getGeocoding(place) {
     if (!place) return;
-    return Geocoder.from(place).then(response => response);
+    const param = place.replace(/\s/g, '+');
+    const url = `${API?.url?.geocoding}&address=${param}`;
+    return fetch(url).then(response => response.json());
   }
 
   /**

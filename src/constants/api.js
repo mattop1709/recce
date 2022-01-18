@@ -5,6 +5,7 @@ export default {
 
   endpoints: {
     autocomplete: '/place/autocomplete/json',
+    geocoding: '/geocode/json',
     placeDetails: '/place/details/json',
   },
 
@@ -14,6 +15,7 @@ export default {
     const { baseURL, endpoints, key } = this;
     return {
       autocomplete: `${baseURL}${endpoints.autocomplete}?key=${key}`,
+      geocoding: `${baseURL}${endpoints.geocoding}?key=${key}`,
       placeDetails: `${baseURL}${endpoints.placeDetails}?key=${key}`,
     };
   },
