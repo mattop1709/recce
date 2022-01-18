@@ -37,11 +37,7 @@ export default (state = initialState, action = {}) => {
     case FETCH_COORDINATES:
       return { ...initialState, isLoading: true };
     case UPDATE_COORDINATES_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        coordinates: action.payload,
-      };
+      return { ...state, isLoading: false, coordinates: action.payload };
     case UPDATE_COORDINATES_ERROR:
       return { ...initialState, isError: true };
     default:
