@@ -6,6 +6,7 @@ import GoogleAPI from '../services/google';
 export const FETCH_AUTOCOMPLETE = `FETCH_AUTOCOMPLETE`;
 export const UPDATE_AUTOCOMPLETE_SUCCESS = `UPDATE_AUTOCOMPLETE_SUCCESS`;
 export const UPDATE_AUTOCOMPLETE_ERROR = `UPDATE_AUTOCOMPLETE_ERROR`;
+export const RESET_AUTOCOMPLETE = `RESET_AUTOCOMPLETE`;
 
 const initialState = {
   predictions: [],
@@ -16,6 +17,10 @@ const initialState = {
 export const fetchAutocomplete = keyword => ({
   type: 'FETCH_AUTOCOMPLETE',
   keyword,
+});
+
+export const resetAutocomplete = () => ({
+  type: 'RESET_AUTOCOMPLETE',
 });
 
 export const fetchAutocompleteEpic = action$ =>
@@ -41,6 +46,8 @@ export default (state = initialState, action = {}) => {
       return { ...state, isLoading: false, predictions: action.payload };
     case UPDATE_AUTOCOMPLETE_ERROR:
       return { ...initialState, isError: true };
+    case RESET_AUTOCOMPLETE:
+      return { ...initialState };
     default:
       return state;
   }

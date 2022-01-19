@@ -8,7 +8,7 @@ export const UPDATE_COORDINATES_SUCCESS = `UPDATE_COORDINATES_SUCCESS`;
 export const UPDATE_COORDINATES_ERROR = `UPDATE_COORDINATES_ERROR`;
 
 const initialState = {
-  coordinates: {},
+  coordinates: { lat: 3.15916, lng: 101.71366 },
   isLoading: false,
   isError: false,
 };
